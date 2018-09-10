@@ -27,6 +27,7 @@ import Underline from './formats/underline';
 import Formula from './formats/formula';
 import Image from './formats/image';
 import Video from './formats/video';
+import HorizontalRule from "./formats/horizontal-rule";
 
 import CodeBlock, { Code as InlineCode } from './formats/code';
 
@@ -91,6 +92,7 @@ Quill.register(
     'formats/formula': Formula,
     'formats/image': Image,
     'formats/video': Video,
+    'formats/horizontal-rule': HorizontalRule,
 
     'modules/syntax': Syntax,
     'modules/table': Table,
