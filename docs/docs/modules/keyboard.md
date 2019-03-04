@@ -104,7 +104,7 @@ quill.keyboard.addBinding({ key: Keyboard.keys.ENTER }, {
 
 #### format
 
-When an Array, handler will be called if *any* of the specified formats are active. When an Object, *all* specified formats conditions must be met. In either case, the context parameter will be an Object of all current active formats, the same returned by `quill.getFormat()`.
+When an Array, handler will be called if *any* of the specified formats are active. When an Object, *all* specified formats conditions must be met. In either case, the format property of the context parameter will be an Object of all current active formats, the same returned by `quill.getFormat()`.
 
 ```js
 var context = {
@@ -209,6 +209,6 @@ var quill = new Quill('#editor', {
 ```
 
 
-### Peformance
+### Performance
 
 Like DOM events, Quill key bindings are blocking calls on every match, so it is a bad idea to have a very expensive handler for a very common key binding. Apply the same performance best practices as you would when attaching to common blocking DOM events, like `scroll` or `mousemove`.

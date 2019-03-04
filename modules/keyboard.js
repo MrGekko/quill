@@ -1,8 +1,7 @@
 import clone from 'clone';
 import equal from 'deep-equal';
 import extend from 'extend';
-import Delta from 'quill-delta';
-import DeltaOp from 'quill-delta/lib/op';
+import Delta, { AttributeMap } from 'quill-delta';
 import { EmbedBlot, Scope, TextBlot } from 'parchment';
 import Quill from '../core/quill';
 import logger from '../core/logger';
@@ -364,6 +363,7 @@ Keyboard.DEFAULTS = {
     },
     'list autofill': {
       key: ' ',
+      shiftKey: null,
       collapsed: true,
       format: {
         list: false,
@@ -457,7 +457,7 @@ function handleBackspace(range, context) {
       if (prev.length() > 1 || prev.statics.blotName === 'table') {
         const curFormats = line.formats();
         const prevFormats = this.quill.getFormat(range.index - 1, 1);
-        formats = DeltaOp.attributes.diff(curFormats, prevFormats) || {};
+        formats = AttributeMap.diff(curFormats, prevFormats) || {};
       }
     }
   }
@@ -487,7 +487,7 @@ function handleDelete(range, context) {
     if (next) {
       const curFormats = line.formats();
       const nextFormats = this.quill.getFormat(range.index, 1);
-      formats = DeltaOp.attributes.diff(curFormats, nextFormats) || {};
+      formats = AttributeMap.diff(curFormats, nextFormats) || {};
       nextLength = next.length();
     }
   }
@@ -508,7 +508,7 @@ function handleDeleteRange(range) {
   if (lines.length > 1) {
     const firstFormats = lines[0].formats();
     const lastFormats = lines[lines.length - 1].formats();
-    formats = DeltaOp.attributes.diff(lastFormats, firstFormats) || {};
+    formats = AttributeMap.diff(lastFormats, firstFormats) || {};
   }
   this.quill.deleteText(range, Quill.sources.USER);
   if (Object.keys(formats).length > 0) {
