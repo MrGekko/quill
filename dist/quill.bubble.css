@@ -1,5 +1,5 @@
 /*!
- * Quill Editor v2.0.0-dev.2
+ * Quill Editor v2.0.0-dev.3
  * https://quilljs.com/
  * Copyright (c) 2014, Jason Chen
  * Copyright (c) 2013, salesforce.com
@@ -926,7 +926,7 @@
 }
 .ql-bubble .ql-tooltip-editor a:before {
   color: #ccc;
-  content: "\D7";
+  content: "\00D7";
   font-size: 16px;
   font-weight: bold;
 }
